@@ -29,6 +29,11 @@ ThemeData _buildLightTheme() {
     buttonTheme: ButtonThemeData(
       buttonColor: ThemeAppColors.light,
     ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: ThemeAppColors.primaryBlue,
+      selectionColor: ThemeAppColors.skyBlue,
+      selectionHandleColor: ThemeAppColors.skyBlue,
+    ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all<TextStyle>(
@@ -122,6 +127,11 @@ ThemeData _builddarkTheme() {
           return ThemeAppColors.light; //the color when checkbox is unselected;
         },
       ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: ThemeAppColors.primaryBlue,
+      selectionColor: ThemeAppColors.skyBlue,
+      selectionHandleColor: ThemeAppColors.skyBlue,
     ),
     buttonTheme: ButtonThemeData(
       buttonColor: ThemeAppColors.light,

@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/icons/app_icons.dart';
 import 'package:wall_e/core/utils/keyboard.dart';
-import 'package:wall_e/source/wall_e/onboard_screen/onboard_screen.dart';
+import 'package:wall_e/source/onboard_screen/onboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

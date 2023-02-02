@@ -3,10 +3,12 @@ import 'package:wall_e/source/history/presentation/pages/historyscreen.dart';
 import 'package:wall_e/source/home/presentation/pages/homescreen.dart';
 import 'package:wall_e/source/home/presentation/pages/send_money.dart';
 import 'package:wall_e/source/home/presentation/pages/topup_page.dart';
-import 'package:wall_e/source/wall_e/login_screen/login_screen.dart';
-import 'package:wall_e/source/wall_e/signup_screen/signup_screen.dart';
-import 'package:wall_e/source/wall_e/splash_screen/splash_screen.dart';
-import 'package:wall_e/source/wall_e/widget/forgot_password/forgot_password_widget.dart';
+import 'package:wall_e/source/login/login_screen.dart';
+import 'package:wall_e/source/register/pages/user_verify.dart';
+import 'package:wall_e/source/register/register.dart';
+import 'package:wall_e/source/register/signup_screen.dart';
+import 'package:wall_e/source/splash_screen/splash_screen.dart';
+import 'package:wall_e/source/widget/forgot_password/forgot_password_widget.dart';
 
 import 'app_route.dart';
 
@@ -21,6 +23,9 @@ class AppRouter {
         return MaterialPageRoute(builder: ((_) => const LoginScreen()));
 
       case AppRoute.register:
+        return MaterialPageRoute(builder: ((_) => Register()));
+
+      case AppRoute.signup:
         return MaterialPageRoute(builder: ((_) => const SignUpScreen()));
 
       case AppRoute.forgotPassword:

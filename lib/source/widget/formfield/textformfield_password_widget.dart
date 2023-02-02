@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
-  const TextFormFieldWidget(
+class TextFormFieldPasswordWidget extends StatelessWidget {
+  const TextFormFieldPasswordWidget(
       {super.key,
       required this.controller,
       required this.hintText,
       required this.obscureText,
-      this.validator});
+      this.validator, this.showPassword});
 
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final Widget? showPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,7 @@ class TextFormFieldWidget extends StatelessWidget {
         cursorColor: theme.primaryColor,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          suffixIcon: GestureDetector(
-            child: Icon(Icons.remove_red_eye),
-          ),
+          suffixIcon: showPassword,
           filled: true,
           fillColor: theme.primaryColorLight,
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),

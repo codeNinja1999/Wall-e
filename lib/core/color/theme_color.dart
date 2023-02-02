@@ -6,6 +6,7 @@ class ThemeAppColors {
   static final secondary = HexColor("#CCDAFC");
   static final light = HexColor("#F6F9FF");
   static final grey = HexColor("#8C8C8C");
+  static final greyShade = Colors.grey[400];
   static final mainColor = HexColor("#C9786D");
   static final silver = HexColor("#BDC3C7");
   static final red = HexColor("#B81118");
@@ -15,7 +16,7 @@ class ThemeAppColors {
   static final white = HexColor("#fafafa");
 
   static final background = Colors.blue[50];
-  static final blue = HexColor("#e9f2f5");
+  static final skyBlue = HexColor("#87CEEB");
 
   static final darkColor = HexColor("#404040");
 

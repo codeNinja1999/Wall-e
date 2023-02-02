@@ -4,10 +4,10 @@ import 'package:wall_e/core/router/app_router.dart';
 import 'package:provider/provider.dart';
 import 'package:wall_e/core/theme/theme_config.dart';
 import 'package:wall_e/core/theme/theme_data.dart';
-import 'package:wall_e/source/wall_e/splash_screen/splash_screen.dart';
+import 'package:wall_e/source/splash_screen/splash_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

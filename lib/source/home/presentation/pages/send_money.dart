@@ -43,7 +43,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(24)),
-                color: Colors.white,
+                color: theme.primaryColorLight,
               ),
               child: Padding(
                 padding:
@@ -108,28 +108,6 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                         ],
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                    //   child: Row(
-                    //     children: [
-                    //       Column(
-                    //         children: const [
-                    //           Icon(Icons.fiber_manual_record,
-                    //               color: Colors.grey, size: 5),
-                    //           Icon(Icons.fiber_manual_record,
-                    //               color: Colors.grey, size: 5),
-                    //           Icon(Icons.fiber_manual_record,
-                    //               color: Colors.grey, size: 5),
-                    //         ],
-                    //       ),
-                    // const Divider(
-                    //   thickness: 1,
-                    //   color: Colors.grey,
-                    //   indent: 40,
-                    // ),
-                    //     ],
-                    //   ),
-                    // ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

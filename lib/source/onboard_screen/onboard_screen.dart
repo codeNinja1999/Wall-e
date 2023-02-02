@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/source/wall_e/login_screen/login_screen.dart';
-import 'package:wall_e/source/wall_e/resources/image_extension.dart';
+import 'package:wall_e/source/login/login_screen.dart';
+import 'package:wall_e/source/resources/image_extension.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});

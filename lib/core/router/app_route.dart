@@ -10,6 +10,8 @@ class AppRoute {
   static const recieverpage = "/recieverpaage";
   static const recieverNavigationPage = "/recieverNavigationPage";
   static const register = "/register";
+  static const signup = "/signup";
+  
   static const startingpage = "/startingpage";
   static const sendmoney = "/sendmoney";
   static const success = "/success";
