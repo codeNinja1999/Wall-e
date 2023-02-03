@@ -4,7 +4,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/icons/app_icons.dart';
-import 'package:wall_e/core/utils/keyboard.dart';
 import 'package:wall_e/source/onboard_screen/onboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigate() async {
-    await Future.delayed(Duration(seconds: 3)).then(
+    await Future.delayed(Duration(seconds: 2)).then(
       (value) => Navigator.pushReplacement(
         context,
         MaterialPageRoute(

@@ -161,10 +161,7 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 20),
 
           //password
-          const Text(
-            'Password',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          const CustomText(text: 'Password'),
           const SizedBox(height: 5),
           TextFormFieldPasswordWidget(
             showPassword: GestureDetector(

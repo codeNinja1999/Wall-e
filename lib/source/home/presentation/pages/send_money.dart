@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/config/images.dart';
+import 'package:wall_e/core/router/app_route.dart';
 import 'package:wall_e/source/home/presentation/widget/appbar/appbar.dart';
 import 'package:wall_e/source/home/presentation/widget/custom_button.dart';
 import 'package:wall_e/source/home/presentation/widget/textfield.dart';
+import 'package:wall_e/source/reciever/router/beneficiary_route.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({Key? key}) : super(key: key);
@@ -22,14 +24,13 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     return Scaffold(
       backgroundColor: theme.backgroundColor,
       appBar: MyAppBar(
+        
         title: 'Send Money',
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Container(
               height: 160,
               width: 340,
@@ -108,7 +109,6 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                         ],
                       ),
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,8 +343,8 @@ _bottomSheet(context) {
                         padding: const EdgeInsets.only(right: 20.0, bottom: 12),
                         child: IconButton(
                           onPressed: () {
-                            // Navigator.pushNamed(
-                            //     context, AppRoute.recieverNavigationPage);
+                            Navigator.pushNamed(
+                                context, BeneficiaryRoute.personalDetail);
                           },
                           icon: const Icon(
                             Icons.add,

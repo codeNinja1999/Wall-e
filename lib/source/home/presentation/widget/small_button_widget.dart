@@ -58,7 +58,6 @@ class SmallButtonWidget extends StatelessWidget {
         //text
         Text(
           text,
-          style: Theme.of(context).textTheme.titleSmall,
         ),
       ],
     );

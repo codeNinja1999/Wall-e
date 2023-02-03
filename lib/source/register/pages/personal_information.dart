@@ -62,36 +62,36 @@ class _RegisterPersonalDetailPageBodyState
 
     final formKey = GlobalKey<FormState>();
     String? gender;
-    // List<DropDownItem> menuItems = <DropDownItem>[
-    //   const DropDownItem(
-    //       'Android',
-    //       '1',
-    //       Icon(
-    //         Icons.android,
-    //         color: Color(0xFF167F67),
-    //       )),
-    //   const DropDownItem(
-    //       'Flutter',
-    //       '2',
-    //       Icon(
-    //         Icons.flag,
-    //         color: Color(0xFF167F67),
-    //       )),
-    //   const DropDownItem(
-    //       'ReactNative',
-    //       '3',
-    //       Icon(
-    //         Icons.format_indent_decrease,
-    //         color: Color(0xFF167F67),
-    //       )),
-    //   const DropDownItem(
-    //       'iOS',
-    //       '4',
-    //       Icon(
-    //         Icons.mobile_screen_share,
-    //         color: Color(0xFF167F67),
-    //       ))
-    // ];
+    List<DropDownItem> menuItems = <DropDownItem>[
+      const DropDownItem(
+          'Android',
+          '1',
+          Icon(
+            Icons.android,
+            color: Color(0xFF167F67),
+          )),
+      const DropDownItem(
+          'Flutter',
+          '2',
+          Icon(
+            Icons.flag,
+            color: Color(0xFF167F67),
+          )),
+      const DropDownItem(
+          'ReactNative',
+          '3',
+          Icon(
+            Icons.format_indent_decrease,
+            color: Color(0xFF167F67),
+          )),
+      const DropDownItem(
+          'iOS',
+          '4',
+          Icon(
+            Icons.mobile_screen_share,
+            color: Color(0xFF167F67),
+          ))
+    ];
     return Form(
       key: formKey,
       child: Padding(

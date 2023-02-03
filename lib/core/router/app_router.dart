@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wall_e/source/history/presentation/pages/historyscreen.dart';
 import 'package:wall_e/source/home/presentation/pages/homescreen.dart';
+import 'package:wall_e/source/home/presentation/pages/qr_scan_page.dart';
 import 'package:wall_e/source/home/presentation/pages/send_money.dart';
 import 'package:wall_e/source/home/presentation/pages/topup_page.dart';
 import 'package:wall_e/source/login/login_screen.dart';
+import 'package:wall_e/source/reciever/beneficiary_page.dart';
 import 'package:wall_e/source/register/pages/user_verify.dart';
 import 'package:wall_e/source/register/register.dart';
 import 'package:wall_e/source/register/signup_screen.dart';
@@ -39,6 +41,9 @@ class AppRouter {
         
       case AppRoute.topup:
         return MaterialPageRoute(builder: ((_) => const TopUpPage()));
+        
+      case AppRoute.qrScan:
+        return MaterialPageRoute(builder: ((_) => const QrScanPage()));
 
       // case AppRoute.loginsignup:
       // return MaterialPageRoute(builder: ((_) => const LoginSignup()));
@@ -54,11 +59,11 @@ class AppRouter {
       //   return MaterialPageRoute(builder: ((_) => GraphPage()));
 
       // case AppRoute.recieverpage:
-      //   return MaterialPageRoute(builder: ((_) => const RecieverPage()));
+        // return MaterialPageRoute(builder: ((_) => const RecieverPage()));
 
-      // case AppRoute.recieverNavigationPage:
-      //   return MaterialPageRoute(
-      //       builder: ((_) => const RecieverNavigationPage()));
+      case AppRoute.recieverNavigationPage:
+        return MaterialPageRoute(
+            builder: ((_) => const RecieverNavigationPage()));
 
       case AppRoute.sendmoney:
         return MaterialPageRoute(builder: ((_) => const SendMoneyScreen()));

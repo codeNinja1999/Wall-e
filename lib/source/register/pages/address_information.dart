@@ -57,29 +57,29 @@ class __RegisterAddressInformationPageBodyState
   Widget build(BuildContext context) {
     theme = Theme.of(context);
     final formKey = GlobalKey<FormState>();
-    // List<DropDownItem> menuItems = <DropDownItem>[
-    //   const DropDownItem(
-    //       'Tokyo',
-    //       '1',
-    //       Icon(
-    //         Icons.android,
-    //         color: Color(0xFF167F67),
-    //       )),
-    //   const DropDownItem(
-    //       'Oita',
-    //       '2',
-    //       Icon(
-    //         Icons.flag,
-    //         color: Color(0xFF167F67),
-    //       )),
-    //   const DropDownItem(
-    //       'Fukuoka',
-    //       '3',
-    //       Icon(
-    //         Icons.format_indent_decrease,
-    //         color: Color(0xFF167F67),
-    //       )),
-    // ];
+    List<DropDownItem> menuItems = <DropDownItem>[
+      const DropDownItem(
+          'Tokyo',
+          '1',
+          Icon(
+            Icons.android,
+            color: Color(0xFF167F67),
+          )),
+      const DropDownItem(
+          'Oita',
+          '2',
+          Icon(
+            Icons.flag,
+            color: Color(0xFF167F67),
+          )),
+      const DropDownItem(
+          'Fukuoka',
+          '3',
+          Icon(
+            Icons.format_indent_decrease,
+            color: Color(0xFF167F67),
+          )),
+    ];
     return Form(
       key: formKey,
       child: Padding(
@@ -156,18 +156,17 @@ class __RegisterAddressInformationPageBodyState
                   ),
                 ),
                 const SizedBox(width: AppSize.inset * 0.5),
-                // Expanded(
-                //   child: CustomDropdown(
-                //     items: menuItems,
-                //     onChange: (DropDownItem data) {},
-                //     placeholderLabel: Localize.statePlaceholder.value,
-                //     enableSearch: true,
-                //     mode: Mode.BOTTOM_SHEET,
-                //     validator: (_) {
-                //       return Localize.stateErrorMessage.value;
-                //     },
-                //   ),
-                // )
+                Expanded(
+                  child: CustomDropdown(
+                    items: menuItems,
+                    onChange: (DropDownItem data) {},
+                    placeholderLabel: Localize.statePlaceholder.value,
+                    enableSearch: true,
+                    validator: (_) {
+                      return Localize.stateErrorMessage.value;
+                    },
+                  ),
+                )
               ],
             ),
             Padding(

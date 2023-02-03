@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pinput/pinput.dart';
 import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/config/images.dart';
@@ -135,6 +136,19 @@ class EnterCodeText extends StatelessWidget {
   }
 }
 
+final defaultPinTheme = PinTheme(
+  width: 56,
+  height: 56,
+  textStyle: const TextStyle(
+      fontSize: 20,
+      color: Color.fromRGBO(30, 60, 87, 1),
+      fontWeight: FontWeight.w600),
+  decoration: BoxDecoration(
+    border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+    borderRadius: BorderRadius.circular(20),
+  ),
+);
+
 class OtpVerificationForm extends StatelessWidget {
   const OtpVerificationForm({
     Key? key,
@@ -149,68 +163,88 @@ class OtpVerificationForm extends StatelessWidget {
         child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 68,
-          width: 64,
-          child: TextField(
-            style: theme.textTheme.titleLarge,
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-            textAlign: TextAlign.center,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(1),
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: SizedBox(
-            height: 68,
-            width: 64,
-            child: TextField(
-              style: theme.textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
+        Pinput(
+          length: 4,
+          // focusedPinTheme: defaultPinTheme.copyDecorationWith(
+          //   border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+          //   borderRadius: BorderRadius.circular(8),
+          // ),
+          disabledPinTheme: PinTheme(
+            width: 56,
+            height: 56,
+            textStyle: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(30, 60, 87, 1),
+                fontWeight: FontWeight.w600),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 4.0),
-          child: SizedBox(
-            height: 68,
-            width: 64,
-            child: TextField(
-              style: theme.textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            height: 68,
-            width: 64,
-            child: TextField(
-              style: theme.textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),
-          ),
-        ),
+
+        // SizedBox(
+        //   height: 68,
+        //   width: 64,
+        //   child: TextField(
+        //     style: theme.textTheme.titleLarge,
+        //     keyboardType: TextInputType.number,
+        //     textInputAction: TextInputAction.next,
+        //     textAlign: TextAlign.center,
+        //     inputFormatters: [
+        //       LengthLimitingTextInputFormatter(1),
+        //       FilteringTextInputFormatter.digitsOnly,
+        //     ],
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 8, right: 8),
+        //   child: SizedBox(
+        //     height: 68,
+        //     width: 64,
+        //     child: TextField(
+        //       style: theme.textTheme.titleLarge,
+        //       keyboardType: TextInputType.number,
+        //       textAlign: TextAlign.center,
+        //       inputFormatters: [
+        //         LengthLimitingTextInputFormatter(1),
+        //         FilteringTextInputFormatter.digitsOnly,
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.only(right: 4.0),
+        //   child: SizedBox(
+        //     height: 68,
+        //     width: 64,
+        //     child: TextField(
+        //       style: theme.textTheme.titleLarge,
+        //       keyboardType: TextInputType.number,
+        //       textAlign: TextAlign.center,
+        //       inputFormatters: [
+        //         LengthLimitingTextInputFormatter(1),
+        //         FilteringTextInputFormatter.digitsOnly,
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: SizedBox(
+        //     height: 68,
+        //     width: 64,
+        //     child: TextField(
+        //       style: theme.textTheme.titleLarge,
+        //       keyboardType: TextInputType.number,
+        //       textAlign: TextAlign.center,
+        //       inputFormatters: [
+        //         LengthLimitingTextInputFormatter(1),
+        //         FilteringTextInputFormatter.digitsOnly,
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     ));
   }

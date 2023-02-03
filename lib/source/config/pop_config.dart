@@ -44,6 +44,7 @@ class PopApp {
                     child: GestureDetector(
                       onTap: () {
                         SystemNavigator.pop();
+                        // Navigator.of(context).pop(true);
                       },
                       child: Text(
                         textAlign: TextAlign.end,

@@ -4,7 +4,7 @@ class AppRoute {
   static const forgotPasswordsetup = "/forgotPasswordsetup";
   static const graphpage = "/graphpage";
   static const homepage = "/homepage";
-  
+  static const qrScan = "/qrscan";
   static const topup = "/topup";
   static const history = "/history";
   static const recieverpage = "/recieverpaage";
