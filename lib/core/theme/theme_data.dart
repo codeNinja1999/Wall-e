@@ -52,7 +52,7 @@ ThemeData _buildLightTheme() {
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w700,
           color: ThemeAppColors.black,
-          fontSize: 22),
+          fontSize: 20),
       titleMedium: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
@@ -157,12 +157,12 @@ ThemeData _builddarkTheme() {
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,
           color: ThemeAppColors.white,
-          fontSize: 22),
+          fontSize: 20),
       titleMedium: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,
           color: ThemeAppColors.white,
-          fontSize: 17),
+          fontSize: 16),
       titleSmall: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,

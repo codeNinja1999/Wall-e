@@ -16,10 +16,6 @@ class RegisterRouter {
           builder: (_) => const SignUpScreen(),
         );
 
-      case RegisterRoute.userVerify:
-        return MaterialPageRoute(
-          builder: (_) => const UserVerifyPage(),
-        );
       case RegisterRoute.personalInformation:
         return MaterialPageRoute(
           builder: (_) => const PersonalInformation(),

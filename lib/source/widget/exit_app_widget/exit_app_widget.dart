@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wall_e/core/color/theme_color.dart';
 
 class PopApp {
   static Future<bool> popApp(BuildContext context) async {
@@ -16,28 +13,15 @@ class PopApp {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              //text
               Text(
                 'Wall-e',
-                style: TextStyle(
-                    color: theme.primaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                style: theme.textTheme.titleMedium,
               ),
-              SizedBox(
-                height: 20,
-              ),
-
-              //are you sure
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Are you sure you want to exit?',
               ),
-              SizedBox(
-                height: 20,
-              ),
-
-              //yes no button
-
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(
@@ -49,9 +33,7 @@ class PopApp {
                       child: Text(
                         textAlign: TextAlign.end,
                         'YES',
-                        style: TextStyle(
-                            color: theme.primaryColor,
-                            fontWeight: FontWeight.bold),
+                        style: theme.textTheme.labelLarge,
                       ),
                     ),
                   ),
@@ -63,9 +45,7 @@ class PopApp {
                       child: Text(
                         textAlign: TextAlign.end,
                         'NO',
-                        style: TextStyle(
-                            color: theme.primaryColor,
-                            fontWeight: FontWeight.bold),
+                        style: theme.textTheme.labelLarge,
                       ),
                     ),
                   )

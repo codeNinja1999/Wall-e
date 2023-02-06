@@ -17,7 +17,7 @@ class ElevatedButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: Size(double.infinity, 60),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
         ),
         backgroundColor: ThemeAppColors.primaryBlue,
         textStyle: TextStyle(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:wall_e/core/app_size/app_size.dart';
@@ -30,59 +29,19 @@ class _RegisterOTPVerifyPageState extends State<RegisterOTPVerifyPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const EsStepperHeader(
-                totalStps: 4,
-                currentStep: 2,
-                title: "OTP Verification",
-                description: "Next: Personal Information",
-              ),
+              const Header(),
               Padding(
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(AppSize.viewSpacing),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(
-                      Images.otpcode,
-                      fit: BoxFit.contain,
-                      alignment: Alignment.center,
-                      width: (deviceSize.width * 0.75),
-                      height: (deviceSize.width) * 0.5,
-                    ),
-                    EnterCodeText(theme: theme),
-                    EnterVerificationText(theme: theme),
+                    SVGImage(deviceSize: deviceSize),
+                    TitleText(theme: theme),
+                    SubtitleText(theme: theme),
                     OtpVerificationForm(theme: theme),
-                    const SizedBox(height: 10),
-                    CustomButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, RegisterRoute.personalInformation);
-                      },
-                      title: "Verify OTP",
-                      buttonType: ButtonType.bordered,
-                    ),
-                    const SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: AppSize.cornerRadiusMedium,
-                          bottom: AppSize.cornerRadiusMedium),
-                      child: Center(
-                        child: Text(
-                          'Dont you recieve any code?',
-                          style: theme.textTheme.bodyMedium
-                              ?.copyWith(color: ThemeAppColors.grey),
-                        ),
-                      ),
-                    ),
-                    const Center(
-                      child: Text(
-                        'Resend Code',
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.bold),
-                        //style: theme.textTheme.bodyMedium,
-                      ),
-                    ),
+                    DidntReceiveCode(theme: theme),
+                    const ResendButton(),
                   ],
                 ),
               ),
@@ -94,8 +53,42 @@ class _RegisterOTPVerifyPageState extends State<RegisterOTPVerifyPage> {
   }
 }
 
-class EnterVerificationText extends StatelessWidget {
-  const EnterVerificationText({
+class Header extends StatelessWidget {
+  const Header({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const EsStepperHeader(
+      totalStps: 4,
+      currentStep: 2,
+      title: "OTP Verification",
+      description: "Next: Personal Information",
+    );
+  }
+}
+
+class ResendButton extends StatelessWidget {
+  const ResendButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'Resend Code',
+        style: TextStyle(
+            decoration: TextDecoration.underline, fontWeight: FontWeight.bold),
+        //style: theme.textTheme.bodyMedium,
+      ),
+    );
+  }
+}
+
+class DidntReceiveCode extends StatelessWidget {
+  const DidntReceiveCode({
     Key? key,
     required this.theme,
   }) : super(key: key);
@@ -105,18 +98,42 @@ class EnterVerificationText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: AppSize.cornerRadiusMedium),
+      padding: const EdgeInsets.only(
+          top: AppSize.cornerRadius, bottom: AppSize.cornerRadiusMedium),
+      child: Center(
+        child: Text(
+          "Don't you recieve any code?",
+          style:
+              theme.textTheme.bodyMedium?.copyWith(color: ThemeAppColors.grey),
+        ),
+      ),
+    );
+  }
+}
+
+class SubtitleText extends StatelessWidget {
+  const SubtitleText({
+    Key? key,
+    required this.theme,
+  }) : super(key: key);
+
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(AppSize.cornerRadius),
       child: Text(
         'Enter verification code we just sent on your email address.',
-        style: theme.textTheme.bodyLarge?.copyWith(color: ThemeAppColors.grey),
+        style: theme.textTheme.bodyMedium?.copyWith(color: ThemeAppColors.grey),
         textAlign: TextAlign.center,
       ),
     );
   }
 }
 
-class EnterCodeText extends StatelessWidget {
-  const EnterCodeText({
+class TitleText extends StatelessWidget {
+  const TitleText({
     Key? key,
     required this.theme,
   }) : super(key: key);
@@ -136,18 +153,25 @@ class EnterCodeText extends StatelessWidget {
   }
 }
 
-final defaultPinTheme = PinTheme(
-  width: 56,
-  height: 56,
-  textStyle: const TextStyle(
-      fontSize: 20,
-      color: Color.fromRGBO(30, 60, 87, 1),
-      fontWeight: FontWeight.w600),
-  decoration: BoxDecoration(
-    border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-    borderRadius: BorderRadius.circular(20),
-  ),
-);
+class SVGImage extends StatelessWidget {
+  const SVGImage({
+    Key? key,
+    required this.deviceSize,
+  }) : super(key: key);
+
+  final Size deviceSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      Images.otpcode,
+      fit: BoxFit.contain,
+      alignment: Alignment.center,
+      width: (deviceSize.width * 0.75),
+      height: (deviceSize.width) * 0.5,
+    );
+  }
+}
 
 class OtpVerificationForm extends StatelessWidget {
   const OtpVerificationForm({
@@ -160,91 +184,38 @@ class OtpVerificationForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: Row(
+        child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Pinput(
           length: 4,
-          // focusedPinTheme: defaultPinTheme.copyDecorationWith(
-          //   border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-          //   borderRadius: BorderRadius.circular(8),
-          // ),
-          disabledPinTheme: PinTheme(
+          // defaultPinTheme: defaultPinTheme,
+          defaultPinTheme: PinTheme(
             width: 56,
             height: 56,
             textStyle: TextStyle(
-                fontSize: 20,
-                color: Color.fromRGBO(30, 60, 87, 1),
-                fontWeight: FontWeight.w600),
+              fontSize: 20,
+              color: ThemeAppColors.primaryBlue,
+              fontWeight: FontWeight.w600,
+            ),
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-              borderRadius: BorderRadius.circular(20),
+              color: ThemeAppColors.light,
+              border: Border.all(color: ThemeAppColors.grey),
+              borderRadius: BorderRadius.circular(15),
             ),
           ),
         ),
-
-        // SizedBox(
-        //   height: 68,
-        //   width: 64,
-        //   child: TextField(
-        //     style: theme.textTheme.titleLarge,
-        //     keyboardType: TextInputType.number,
-        //     textInputAction: TextInputAction.next,
-        //     textAlign: TextAlign.center,
-        //     inputFormatters: [
-        //       LengthLimitingTextInputFormatter(1),
-        //       FilteringTextInputFormatter.digitsOnly,
-        //     ],
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 8, right: 8),
-        //   child: SizedBox(
-        //     height: 68,
-        //     width: 64,
-        //     child: TextField(
-        //       style: theme.textTheme.titleLarge,
-        //       keyboardType: TextInputType.number,
-        //       textAlign: TextAlign.center,
-        //       inputFormatters: [
-        //         LengthLimitingTextInputFormatter(1),
-        //         FilteringTextInputFormatter.digitsOnly,
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(right: 4.0),
-        //   child: SizedBox(
-        //     height: 68,
-        //     width: 64,
-        //     child: TextField(
-        //       style: theme.textTheme.titleLarge,
-        //       keyboardType: TextInputType.number,
-        //       textAlign: TextAlign.center,
-        //       inputFormatters: [
-        //         LengthLimitingTextInputFormatter(1),
-        //         FilteringTextInputFormatter.digitsOnly,
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: SizedBox(
-        //     height: 68,
-        //     width: 64,
-        //     child: TextField(
-        //       style: theme.textTheme.titleLarge,
-        //       keyboardType: TextInputType.number,
-        //       textAlign: TextAlign.center,
-        //       inputFormatters: [
-        //         LengthLimitingTextInputFormatter(1),
-        //         FilteringTextInputFormatter.digitsOnly,
-        //       ],
-        //     ),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppSize.cornerRadius),
+          child: CustomButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RegisterRoute.personalInformation);
+            },
+            title: "Verify OTP",
+            buttonType: ButtonType.bordered,
+          ),
+        ),
       ],
     ));
   }

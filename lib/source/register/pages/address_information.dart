@@ -1,12 +1,11 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:wall_e/core/localization/localize.dart';
 import 'package:wall_e/core/localization/localize_extenstion.dart';
 import 'package:wall_e/source/home/presentation/widget/custom_button.dart';
-import 'package:wall_e/source/home/presentation/widget/textfield.dart';
 import 'package:wall_e/source/register/route/register_route.dart';
 import 'package:wall_e/source/widget/drop_down/app_dropdown.dart';
+import 'package:wall_e/source/widget/formfield/custom_textformfield_widget.dart';
 import 'package:wall_e/source/widget/step_header/esstepper_header.dart';
 
 class AddressInformation extends StatefulWidget {
@@ -24,14 +23,14 @@ class _AddressInformationState extends State<AddressInformation> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: const [
               EsStepperHeader(
                 totalStps: 4,
                 currentStep: 4,
-                title: Localize.address.value,
+                title: 'Address Information',
                 description: "Note: Provide your address",
               ),
-              const _RegisterAddressInformationPageBody(),
+              _RegisterAddressInformationPageBody(),
             ],
           ),
         ),
@@ -90,121 +89,156 @@ class __RegisterAddressInformationPageBodyState
           children: [
             Padding(
               padding: const EdgeInsets.only(top: AppSize.inset),
-              child: CustomTextField(
+              child: CustomTextFormField(
                   enabled: false,
-                  textInputType: TextInputType.text,
-                  labelText: Localize.countryPlaceholder.value,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Country',
                   textController: TextEditingController()..text = "Japan"),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: AppSize.inset),
-                    child: CustomTextField(
-                        textInputType: TextInputType.text,
-                        labelText: Localize.streetPlaceholder.value,
-                        onChanged: (value) {},
-                        validator: (_) {
-                          (value) {
-                            if (value == "") {
-                              return Localize.streetErrorMessage.value;
-                            }
-                          };
-                          return null;
-                        }),
-                  ),
-                ),
-                const SizedBox(width: AppSize.inset * 0.5),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: AppSize.inset),
-                    child: CustomTextField(
-                        textInputType: TextInputType.text,
-                        labelText: Localize.suburbPlaceholder.value,
-                        onChanged: (value) {
-                          (value) {
-                            if (value == "") {
-                              return "Please enter postalcode.";
-                            }
-                            return null;
-                          };
-                        }),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: AppSize.inset),
-                    child: CustomTextField(
-                        textInputType: TextInputType.text,
-                        labelText: Localize.postalCodePlaceholder.value,
-                        onChanged: (value) {},
-                        validator: (value) {
-                          if (value == "") {
-                            return Localize.postalCodeErrorMessage.value;
-                          }
-                          return null;
-                        }),
-                  ),
-                ),
-                const SizedBox(width: AppSize.inset * 0.5),
-                Expanded(
-                  child: CustomDropdown(
-                    items: menuItems,
-                    onChange: (DropDownItem data) {},
-                    placeholderLabel: Localize.statePlaceholder.value,
-                    enableSearch: true,
-                    validator: (_) {
-                      return Localize.stateErrorMessage.value;
-                    },
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: AppSize.viewSpacing),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CustomButton(
-                      // textColor: theme.bottomAppBarColor,
-                      buttonType: ButtonType.round,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      title: Localize.backButtonTitle.value,
-                    ),
-                  ),
-                  const SizedBox(width: AppSize.inset * 0.5),
-                  Expanded(
-                    child: CustomButton(
-                      // textColor: theme.bottomAppBarColor,
-                      buttonType: ButtonType.round,
-                      onPressed: () {
-                        // navigateToRegisterSuccess(context);
-                        Navigator.pushNamed(
-                            context, RegisterRoute.successbeneficiary);
-                        // if (formKey.currentState!.validate()) {
-
-                        // }
-                      },
-                      title: Localize.nextButtonTitle.value,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            const CityName(),
+            ZipCode(menuItems: menuItems),
+            const BackOrNextButton(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class BackOrNextButton extends StatelessWidget {
+  const BackOrNextButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSize.viewSpacing),
+      child: Row(
+        children: [
+          Expanded(
+            child: CustomButton(
+              // textColor: theme.bottomAppBarColor,
+              buttonType: ButtonType.round,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              title: Localize.backButtonTitle.value,
+            ),
+          ),
+          const SizedBox(width: AppSize.inset * 0.5),
+          Expanded(
+            child: CustomButton(
+              // textColor: theme.bottomAppBarColor,
+              buttonType: ButtonType.round,
+              onPressed: () {
+                // navigateToRegisterSuccess(context);
+                Navigator.pushNamed(context, RegisterRoute.successbeneficiary);
+                // if (formKey.currentState!.validate()) {
+
+                // }
+              },
+              title: Localize.nextButtonTitle.value,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ZipCode extends StatelessWidget {
+  const ZipCode({
+    Key? key,
+    required this.menuItems,
+  }) : super(key: key);
+
+  final List<DropDownItem> menuItems;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: AppSize.inset),
+            child: CustomTextFormField(
+                keyboardType: TextInputType.text,
+                labelText: 'Zip Code/Postal Code',
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value == "") {
+                    return Localize.postalCodeErrorMessage.value;
+                  }
+                  return null;
+                }),
+          ),
+        ),
+        const SizedBox(width: AppSize.inset * 0.5),
+        Expanded(
+          child: CustomDropdown(
+            items: menuItems,
+            onChange: (DropDownItem data) {},
+            placeholderLabel: 'State',
+            enableSearch: true,
+            validator: (_) {
+              return Localize.stateErrorMessage.value;
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class CityName extends StatelessWidget {
+  const CityName({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: AppSize.inset),
+            child: CustomTextFormField(
+                keyboardType: TextInputType.text,
+                labelText: 'Street name',
+                onSaved: (value) {},
+                validator: (_) {
+                  (value) {
+                    if (value == "") {
+                      return Localize.streetErrorMessage.value;
+                    }
+                  };
+                  return null;
+                }),
+          ),
+        ),
+        const SizedBox(width: AppSize.inset * 0.5),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: AppSize.inset),
+            child: CustomTextFormField(
+                keyboardType: TextInputType.text,
+                labelText: 'City name',
+                onSaved: (value) {
+                  (value) {
+                    if (value == "") {
+                      return "Please enter postalcode.";
+                    }
+                    return null;
+                  };
+                }),
+          ),
+        ),
+      ],
     );
   }
 }

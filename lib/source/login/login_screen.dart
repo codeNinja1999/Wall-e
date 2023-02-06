@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/router/app_route.dart';
 import 'package:wall_e/core/utils/keyboard.dart';
 import 'package:wall_e/source/resources/image_extension.dart';
 import 'package:wall_e/source/utils/check_validation.dart';
-import 'package:wall_e/source/register/signup_screen.dart';
 import 'package:wall_e/source/widget/elevated_button_widget.dart';
-import 'package:wall_e/source/widget/formfield/textformfield_password_widget.dart';
-import 'package:wall_e/source/widget/formfield/textformfield_text_widget.dart';
+import 'package:wall_e/source/widget/formfield/custom_textformfield_widget.dart';
 import 'package:wall_e/source/widget/forgot_password/forgot_password_widget.dart';
-import 'package:wall_e/source/widget/text/customtext_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,26 +35,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             child: SingleChildScrollView(
               child: Column(
-                children: [
+                children: const [
                   //login
-                  const LoginText(text: 'Login'),
-                  const SizedBox(height: 10),
-                  const WelcomeText(
-                      text: "Welcome back, let's continue to login"),
-                  const SizedBox(height: 50),
-                  LoginForm(theme: theme),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: [
-                        const CustomDivider(),
-                        const SizedBox(height: 20),
-                        GoogleSigninButton(theme: theme),
-                        const SizedBox(height: 25),
-                        SignUpButton(theme: theme),
-                      ],
-                    ),
-                  ),
+                  LoginText(text: 'Login'),
+                  SizedBox(height: 10),
+                  WelcomeText(text: "Welcome back, let's continue to login"),
+                  SizedBox(height: 50),
+                  LoginForm(),
+                  CustomDivider(),
+                  SizedBox(height: 20),
+                  GoogleSigninButton(),
+                  SizedBox(height: 25),
+                  SignUpButton(),
                 ],
               ),
             ),
@@ -103,8 +93,7 @@ class WelcomeText extends StatelessWidget {
 }
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key, required this.theme});
-  final ThemeData theme;
+  const LoginForm({super.key});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -146,12 +135,15 @@ class _LoginFormState extends State<LoginForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //email
-          const CustomText(text: 'Email'),
+          const Text(
+            'Email',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 5),
-          TextFormFieldWidget(
-            controller: emailController,
+          CustomTextFormField(
+            textController: emailController,
             hintText: 'Enter your email',
-            obscureText: false,
+            textInputAction: TextInputAction.next,
             validator: (val) {
               return CheckValidation.validateEmail(
                 emailController.text.trim(),
@@ -161,10 +153,13 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 20),
 
           //password
-          const CustomText(text: 'Password'),
+          const Text(
+            'Password',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 5),
-          TextFormFieldPasswordWidget(
-            showPassword: GestureDetector(
+          CustomTextFormField(
+            suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
                   _passwordVisible = !_passwordVisible;
@@ -172,10 +167,11 @@ class _LoginFormState extends State<LoginForm> {
               },
               child: Icon(
                 _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                color: widget.theme.primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
-            controller: passwordController,
+            textInputAction: TextInputAction.next,
+            textController: passwordController,
             hintText: 'Enter your password',
             obscureText: _passwordVisible ? false : true,
             validator: (val) {
@@ -200,7 +196,7 @@ class _LoginFormState extends State<LoginForm> {
               },
               child: Text(
                 'Forgot Password?',
-                style: TextStyle(color: widget.theme.primaryColor),
+                style: TextStyle(color: Theme.of(context).primaryColor),
               ),
             ),
           ),
@@ -226,7 +222,6 @@ class _LoginFormState extends State<LoginForm> {
               //       content: Text('Processing Data'),
               //     ),
               //   );
-              //   //This is for temporary
               _login(email, password);
               // }
             },
@@ -244,17 +239,21 @@ class CustomDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Expanded(child: Divider(endIndent: 10)),
-        Text(
-          'or',
-          style: TextStyle(color: Colors.grey.shade400),
-        ),
-        const Expanded(
-          child: Divider(indent: 10),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(AppSize.cornerRadiusMedium,
+          AppSize.viewSpacing, AppSize.cornerRadiusMedium, 0),
+      child: Row(
+        children: [
+          const Expanded(child: Divider(endIndent: 10)),
+          Text(
+            'or',
+            style: TextStyle(color: Colors.grey.shade400),
+          ),
+          const Expanded(
+            child: Divider(indent: 10),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -262,47 +261,48 @@ class CustomDivider extends StatelessWidget {
 class GoogleSigninButton extends StatelessWidget {
   const GoogleSigninButton({
     Key? key,
-    required this.theme,
   }) : super(key: key);
-
-  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Not Implemented yet'),
-          ),
-        );
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColorLight,
-        minimumSize: const Size(double.infinity, 45),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //google logo
-          CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: 15,
-            child: Image.asset(
-              ImageExtension.googleIcon,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(AppSize.viewSpacing,
+          AppSize.cornerRadiusMedium, AppSize.viewSpacing, 0),
+      child: ElevatedButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Not Implemented yet'),
             ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).primaryColorLight,
+          minimumSize: const Size(double.infinity, 45),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          const SizedBox(width: 20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //google logo
+            CircleAvatar(
+              backgroundColor: Colors.transparent,
+              radius: 15,
+              child: Image.asset(
+                ImageExtension.googleIcon,
+              ),
+            ),
+            const SizedBox(width: 20),
 
-          //button
-          const Text(
-            'Login with Google',
-            style: TextStyle(color: Colors.black, fontSize: 14),
-          ),
-        ],
+            //button
+            const Text(
+              'Login with Google',
+              style: TextStyle(color: Colors.black, fontSize: 14),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -311,33 +311,34 @@ class GoogleSigninButton extends StatelessWidget {
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
     Key? key,
-    required this.theme,
   }) : super(key: key);
-
-  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Don't have a account?",
-          style: TextStyle(fontSize: 12),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, AppRoute.register);
-          },
-          child: Text(
-            'Sign Up',
-            style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: theme.primaryColor),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(AppSize.viewSpacing,
+          AppSize.cornerRadiusSmall, AppSize.viewSpacing, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            "Don't have a account?",
+            style: TextStyle(fontSize: 12),
           ),
-        ),
-      ],
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoute.register);
+            },
+            child: Text(
+              'Sign Up',
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

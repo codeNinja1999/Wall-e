@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/source/config/pop_config.dart';
+import 'package:wall_e/source/widget/exit_app_widget/exit_app_widget.dart';
 
 class InboxScreen extends StatefulWidget {
   const InboxScreen({super.key});

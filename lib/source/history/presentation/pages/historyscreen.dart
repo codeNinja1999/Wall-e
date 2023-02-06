@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/config/images.dart';
 import 'package:wall_e/source/history/presentation/pages/transactionlist_page.dart';
-import 'package:wall_e/source/config/pop_config.dart';
+import 'package:wall_e/source/widget/exit_app_widget/exit_app_widget.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -103,52 +103,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   height: 20,
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    height: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.red[300],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.shade400,
-                          ),
-                          child: Icon(
-                            Icons.account_balance_wallet_rounded,
-                            size: 30,
-                            color: ThemeAppColors.light,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Your monthly Expense',
-                                  style: TextStyle(
-                                      color: ThemeAppColors.light,
-                                      fontWeight: FontWeight.bold)),
-                              Text(
-                                '- Rs 3.240.000',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: ThemeAppColors.light,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ]),
-                      ],
-                    ),
-                  ),
-                ),
+                ExpenseCard(),
 
                 SizedBox(height: 30),
 
@@ -169,7 +124,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       child: Text(
                         'Details',
                         style: TextStyle(
-                          color: ThemeAppColors.secondary,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                       ),
                     )
@@ -178,146 +133,217 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 250,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: theme.primaryColorLight,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Today, August 29',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 160,
-                        child: ListView.separated(
-                          itemCount: 2,
-                          separatorBuilder: (context, index) => Divider(),
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              leading: CircleAvatar(
-                                radius: 25,
-                                backgroundColor: theme.disabledColor,
-                                backgroundImage: AssetImage(Images.usericon),
-                              ),
-                              title: Text(
-                                expense[index],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14),
-                              ),
-                              subtitle: Text(
-                                expenseRemarks[index],
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: ThemeAppColors.secondary),
-                              ),
-                              trailing: SizedBox(
-                                height: 50,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      expenseAmount[index],
-                                      style: TextStyle(
-                                        color: ThemeAppColors.red,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${DateTime.now().hour}:${DateTime.now().minute} ' +
-                                          'PM',
-                                      style: TextStyle(
-                                          color: ThemeAppColors.secondary),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                LatestTransaction(),
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 250,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: theme.primaryColorLight,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Friday, August 20',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 160,
-                        child: ListView.separated(
-                          itemCount: 3,
-                          separatorBuilder: (context, index) => Divider(),
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              leading: CircleAvatar(
-                                  radius: 25,
-                                  backgroundColor: theme.disabledColor,
-                                  backgroundImage: AssetImage(Images.usericon)),
-                              title: Text(
-                                expense[index],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14),
-                              ),
-                              subtitle: Text(
-                                expenseRemarks[index],
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: ThemeAppColors.secondary),
-                              ),
-                              trailing: SizedBox(
-                                height: 50,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      expenseAmount[index],
-                                      style: TextStyle(
-                                        color: ThemeAppColors.red,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${DateTime.now().hour}:${DateTime.now().minute} ' +
-                                          'PM',
-                                      style: TextStyle(
-                                          color: ThemeAppColors.secondary),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                PreviousTransaction(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ExpenseCard extends StatelessWidget {
+  const ExpenseCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        height: 120,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.red[300],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade400,
+              ),
+              child: Icon(
+                Icons.account_balance_wallet_rounded,
+                size: 30,
+                color: ThemeAppColors.light,
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text('Your monthly Expense',
+                  style: TextStyle(
+                      color: ThemeAppColors.light,
+                      fontWeight: FontWeight.bold)),
+              Text(
+                '- Rs 3.240.000',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: ThemeAppColors.light,
+                    fontWeight: FontWeight.bold),
+              ),
+            ]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PreviousTransaction extends StatelessWidget {
+  const PreviousTransaction({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      height: 250,
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: theme.primaryColorLight,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Friday, August 20',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            height: 160,
+            child: ListView.separated(
+              itemCount: 3,
+              separatorBuilder: (context, index) => Divider(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: theme.disabledColor,
+                      backgroundImage: AssetImage(Images.usericon)),
+                  title: Text(
+                    expense[index],
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  subtitle: Text(
+                    expenseRemarks[index],
+                    style: TextStyle(
+                        fontSize: 12, color: ThemeAppColors.secondary),
+                  ),
+                  trailing: SizedBox(
+                    height: 50,
+                    child: Column(
+                      children: [
+                        Text(
+                          expenseAmount[index],
+                          style: TextStyle(
+                            color: ThemeAppColors.red,
+                          ),
+                        ),
+                        Text(
+                          '${DateTime.now().hour}:${DateTime.now().minute} ' +
+                              'PM',
+                          style: TextStyle(color: ThemeAppColors.secondary),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LatestTransaction extends StatelessWidget {
+  const LatestTransaction({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 250,
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColorLight,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Today, August 29',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            height: 160,
+            child: ListView.separated(
+              itemCount: 2,
+              separatorBuilder: (context, index) => Divider(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Theme.of(context).disabledColor,
+                    backgroundImage: AssetImage(Images.usericon),
+                  ),
+                  title: Text(
+                    expense[index],
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  subtitle: Text(
+                    expenseRemarks[index],
+                    style: TextStyle(
+                        fontSize: 12, color: ThemeAppColors.secondary),
+                  ),
+                  trailing: SizedBox(
+                    height: 50,
+                    child: Column(
+                      children: [
+                        Text(
+                          expenseAmount[index],
+                          style: TextStyle(
+                            color: ThemeAppColors.red,
+                          ),
+                        ),
+                        Text(
+                          '${DateTime.now().hour}:${DateTime.now().minute} '
+                          'PM',
+                          style: TextStyle(color: ThemeAppColors.secondary),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

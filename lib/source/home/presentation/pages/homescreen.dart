@@ -3,7 +3,7 @@ import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/icons/app_icons.dart';
 import 'package:wall_e/core/router/app_route.dart';
 import 'package:wall_e/source/history/presentation/pages/historyscreen.dart';
-import 'package:wall_e/source/config/pop_config.dart';
+import 'package:wall_e/source/widget/exit_app_widget/exit_app_widget.dart';
 import 'package:wall_e/source/home/presentation/widget/button_widget.dart';
 import 'package:wall_e/source/home/presentation/widget/small_button_widget.dart';
 import 'package:wall_e/source/inbox/presentation/pages/inboxscreen.dart';

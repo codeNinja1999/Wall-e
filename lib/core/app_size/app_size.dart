@@ -8,4 +8,5 @@ class AppSize {
   static const double cornerRadiusMedium = 8;
   static const double icnoHeight = 18;
   static const double buttonHeight = 48;
+  static const double viewPadding = 18;
 }
