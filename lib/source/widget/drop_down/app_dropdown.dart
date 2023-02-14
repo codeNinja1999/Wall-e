@@ -1,18 +1,15 @@
+import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/core/theme/theme_data.dart';
 
 class CustomDropdown<T> extends StatefulWidget {
   /// onChange is called when the selected option is changed.;
   /// It will pass back the value and the index of the option.
   final void Function(T) onChange;
-
-  /// list of DropdownItems
   final List<T> items;
   final T? selectedItem;
   final bool enableSearch;
-  final Mode mode;
   final String placeholderLabel;
   final IconData? leadingIcon;
   final void Function(T?)? onSaved;
@@ -25,7 +22,6 @@ class CustomDropdown<T> extends StatefulWidget {
     required this.items,
     this.selectedItem,
     this.enableSearch = false,
-    this.mode = Mode.DIALOG,
     required this.placeholderLabel,
     required this.onChange,
     this.leadingIcon,
@@ -36,94 +32,94 @@ class CustomDropdown<T> extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomDropdownState<T> createState() => _CustomDropdownState<T>();
 }
 
 class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
   bool isLoading = true;
-  late ThemeData theme;
+
   @override
   Widget build(BuildContext context) {
-    theme = Theme.of(context);
-    int itemCount = widget.items.length ?? 0;
+    final theme = Theme.of(context);
+    int itemCount = widget.items.length;
     if (itemCount > 0 && widget.items[0].toString() != "Loading...") {}
     return Theme(
       data: ThemeData(
         textTheme: TextTheme(subtitle1: Theme.of(context).textTheme.bodySmall),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: DropdownSearch<T>(
-          //mode of dropdown
-          popupProps: PopupProps.bottomSheet(
-            bottomSheetProps: BottomSheetProps(backgroundColor: 
-            theme.primaryColorLight ,
-            ),
-            //to show search box
-            showSearchBox: widget.enableSearch,
-            loadingBuilder: loadingView,
-            emptyBuilder: emptyView,
-            // onFind: widget.onFind,
-            // popupBackgroundColor: theme.backgroundColor,
-            searchDelay: const Duration(microseconds: 0),
-            searchFieldProps: TextFieldProps(
-              padding: const EdgeInsets.all(16),
-              cursorColor: ThemeAppColors.grey,
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(0),
-                  fillColor: ThemeAppColors.grey.withOpacity(0.1),
-                  filled: true,
-                  hintText: "Search",
-                  prefixIcon: Icon(Icons.search, color: ThemeAppColors.grey),
-                  hintStyle: theme.textTheme.placeHolder(context),
-                  border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)))),
+      child: DropdownSearch<T>(
+        popupProps: PopupProps.bottomSheet(
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height / 2.5),
+          bottomSheetProps: BottomSheetProps(
+            backgroundColor: theme.primaryColorLight,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSize.viewMargin),
             ),
           ),
-          asyncItems: widget.onFind,
-
-          enabled: widget.enabled ?? true,
-          //list of dropdown items
-          items: widget.items,
-          selectedItem: widget.selectedItem,
-          onChanged: (data) {
-            widget.onChange(data as T);
-          },
-          onSaved: widget.onSaved,
-          validator: widget.validator,
-          dropdownDecoratorProps: DropDownDecoratorProps(
-            dropdownSearchDecoration: InputDecoration(
-              labelText: widget.placeholderLabel,
-              labelStyle: theme.textTheme.bodyMedium,
-              hintText: widget.placeholderLabel,
-              hintStyle: theme.textTheme.bodySmall,
-              contentPadding: const EdgeInsets.fromLTRB(12, 4, 0, 0),
-              filled: false,
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
-                borderRadius: BorderRadius.circular(8),
-              ),
+          showSearchBox: widget.enableSearch,
+          loadingBuilder: loadingView,
+          emptyBuilder: emptyView,
+          searchDelay: const Duration(microseconds: 10),
+          searchFieldProps: TextFieldProps(
+            padding: const EdgeInsets.all(AppSize.inset),
+            cursorColor: ThemeAppColors.grey,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
+              fillColor: ThemeAppColors.grey.withOpacity(0.2),
+              filled: true,
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search, color: ThemeAppColors.grey),
+              hintStyle: theme.textTheme.labelLarge,
               border: OutlineInputBorder(
-                borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
-                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(AppSize.cornerRadiusMedium),
               ),
-              disabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(width: 1.0, color: ThemeAppColors.grey),
-                  borderRadius: BorderRadius.circular(8.0)),
-              enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(width: 1.0, color: ThemeAppColors.grey),
-                  borderRadius: BorderRadius.circular(8.0)),
-              focusColor: ThemeAppColors.primaryBlue,
-              prefixIcon: widget.leadingIcon != null
-                  ? Icon(
-                      widget.leadingIcon,
-                      color: ThemeAppColors.grey,
-                    )
-                  : null,
             ),
+          ),
+        ),
+        asyncItems: widget.onFind,
+        enabled: widget.enabled ?? true,
+        items: widget.items,
+        selectedItem: widget.selectedItem,
+        onChanged: (data) {
+          widget.onChange(data as T);
+        },
+        onSaved: widget.onSaved,
+        validator: widget.validator,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: InputDecoration(
+            labelText: widget.placeholderLabel,
+            labelStyle: theme.textTheme.bodyMedium,
+            hintText: widget.placeholderLabel,
+            hintStyle: theme.textTheme.bodySmall,
+            contentPadding: const EdgeInsets.fromLTRB(12, 4, 0, 0),
+            fillColor: Theme.of(context).primaryColorLight,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1.0, color: ThemeAppColors.grey),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1.0, color: ThemeAppColors.grey),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            focusColor: ThemeAppColors.primaryBlue,
+            prefixIcon: widget.leadingIcon != null
+                ? Icon(
+                    widget.leadingIcon,
+                    color: ThemeAppColors.grey,
+                  )
+                : null,
           ),
         ),
       ),

@@ -8,6 +8,10 @@ extension LocalizeExtenstion on Localize {
       case Localize.appName:
         return "app_name";
 
+      
+      case Localize.sourceoffund:
+        return "Source of Fund";
+
       case Localize.welcome:
         return "welcome";
 
@@ -26,6 +30,9 @@ extension LocalizeExtenstion on Localize {
         return "bank_transfer";
       case Localize.forward:
         return "continue";
+
+        case Localize.selectBank:
+        return "Select Bank";
       case Localize.payoutType:
         return "payout_type";
       case Localize.search:
@@ -264,7 +271,7 @@ extension LocalizeExtenstion on Localize {
         return "contact_error_message";
 
       case Localize.nextButtonTitle:
-        return "next";
+        return "Next";
 
       case Localize.countryPlaceholder:
         return "country_placeholder";
@@ -301,7 +308,7 @@ extension LocalizeExtenstion on Localize {
         return "state_error_message";
 
       case Localize.backButtonTitle:
-        return "back";
+        return "Back";
 
       case Localize.idTypePlaceholder:
         return "id_type_placeholder";
@@ -526,7 +533,7 @@ extension LocalizeExtenstion on Localize {
         return "identification_information";
 
       case Localize.addReceiver:
-        return "add_receiver";
+        return "Add Receiver";
 
       case Localize.payoutTitle:
         return "payout_title";
@@ -559,7 +566,7 @@ extension LocalizeExtenstion on Localize {
         return "payout_method_error_message";
 
       case Localize.bank:
-        return "bank";
+        return "Bank";
 
       case Localize.bankLabel:
         return "bank_label";
@@ -568,7 +575,7 @@ extension LocalizeExtenstion on Localize {
         return "bank_error_message";
 
       case Localize.branch:
-        return "branch";
+        return "Branch";
 
       case Localize.branchLabel:
         return "branch_label";
@@ -634,7 +641,7 @@ extension LocalizeExtenstion on Localize {
         return "transaction_summary";
 
       case Localize.change:
-        return "change";
+        return "Change";
 
       case Localize.receiverInformation:
         return "receiver_information";
@@ -656,20 +663,28 @@ extension LocalizeExtenstion on Localize {
 
       case Localize.promoCodeDiscount:
         return "promo_code_discount";
+
       case Localize.payWithYour:
         return "pay_with_your";
+
       case Localize.purposeRemit:
         return "purpose_remit";
+
       case Localize.discount:
         return "discount";
+
       case Localize.promotionRate:
         return "promotion_rate";
+
       case Localize.transferAmount:
         return "transfer_amount";
+
       case Localize.reasonTransfer:
         return "reason_transfer";
+
       case Localize.reasonTransferErrorMessage:
         return "reason_transfer_error_msg";
+
       case Localize.promocodeErrorMessage:
         return "promo_code_error_msg";
 
@@ -917,10 +932,10 @@ extension LocalizeExtenstion on Localize {
         return "email_link_desc";
 
       case Localize.beneficiarycreatedsuccessfully:
-        return "beneficiary_created_successfully";
+        return "Beneficiary Created Successfully";
 
       case Localize.beneficiarycreateddesc:
-        return "beneficiary_created_desc";
+        return "Your beneficiary has been successfully created. Enjoy!";
 
       case Localize.finish:
         return "finish";

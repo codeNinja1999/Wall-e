@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppIcon {
   static const wallet = Icons.wallet;
+  static const visibility = Icons.visibility;
+  static const visibilityOff = Icons.visibility_off;
+  static const add = Icons.add;
 
+  static const sendMoney = Icons.attach_money;
   static const wifi = Icons.wifi;
   static const send = Icons.send;
   static const home = Icons.home;
@@ -15,7 +19,6 @@ class AppIcon {
   static const password = Icons.lock;
   static const help = Icons.help_outlined;
 
-  
   static const logout = Icons.logout_outlined;
 
   static const keyboardArrowLeft = Icons.keyboard_arrow_left;

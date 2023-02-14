@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/source/login/login_screen.dart';
-import 'package:wall_e/source/resources/image_extension.dart';
+import 'package:wall_e/core/config/images.dart';
+import 'package:wall_e/core/router/app_route.dart';
+import 'package:wall_e/source/widget/custom_elevated_button.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
@@ -15,11 +13,7 @@ class OnBoardScreen extends StatefulWidget {
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
   int currentIndex = 0;
-  final pages = [
-    ImageExtension.page1,
-    ImageExtension.page2,
-    ImageExtension.page3
-  ];
+  final pages = [Images.page1, Images.page2, Images.page3];
   final pageController = PageController();
 
   @override
@@ -28,6 +22,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
@@ -45,52 +40,31 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 },
               ),
             ),
-
-            //smooth indicator
-            SmoothPageIndicator(
-              controller: pageController,
-              count: 3,
-              effect: WormEffect(dotHeight: 8, dotWidth: 8),
+            Center(
+              child: SmoothPageIndicator(
+                controller: pageController,
+                count: 3,
+                effect: const WormEffect(dotHeight: 8, dotWidth: 8),
+              ),
             ),
-            // Spacer(flex: 1),
-            SizedBox(height: 80),
-
-            //Easy to use
-            Text(
-              'Easy to use',
-              style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+            const SizedBox(height: 80),
+            Center(
+              child: Text(
+                'Easy to use',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
-            SizedBox(height: 25),
-
-            //description
+            const SizedBox(height: 25),
             Text(
               'Get ready to pay all your bills with just a few taps. Paying your bills became fast and efficient. Enjoy!',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
             ),
-            SizedBox(height: 75),
-
-            //button
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                  textStyle:
-                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  minimumSize: Size(double.infinity, 60),
-                  backgroundColor: ThemeAppColors.primaryBlue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  )),
-              child: Text(
-                'Get Started',
-              ),
+            const SizedBox(height: 75),
+            CustomElevatedButton(
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, AppRoute.loginScreen),
+              buttonText: 'Get Started',
             ),
           ],
         ),

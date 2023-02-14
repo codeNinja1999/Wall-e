@@ -4,6 +4,7 @@ enum Localize {
   appDescription,
   appDescription1,
   addBeneficiary,
+  sourceoffund,
   accountDeposite,
   aboutKantipurRemit,
   bankTransfer,
@@ -321,5 +322,5 @@ enum Localize {
   recieveramount,
   paymentdetail,
   sendamount,
-  fee
+  fee, selectBank
 }

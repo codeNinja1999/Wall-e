@@ -14,7 +14,7 @@ class PopApp {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Wall-e',
+                'App-Name',
                 style: theme.textTheme.titleMedium,
               ),
               const SizedBox(height: 20),

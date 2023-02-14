@@ -4,6 +4,6 @@ class RegisterRoute {
   static const otpVerification = "/otpVerification";
 
   static const signup = "/signup";
-  static const successbeneficiary = "/successBeneficiary";
-  static const login = "/login";
+  static const succesSignup = "/successSignup";
+
 }

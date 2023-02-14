@@ -63,7 +63,7 @@ class EsStepperHeader extends StatelessWidget {
                       textAlign: TextAlign.right,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w500,
                           ),
                     ),
                   )
