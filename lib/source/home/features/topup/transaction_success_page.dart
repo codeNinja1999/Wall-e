@@ -16,6 +16,7 @@ class TransactionSuccessPage extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(
         leadingIcon: true,
+        title: 'Transcation Success',
         onPressed: () =>
             Navigator.pushNamed(context, AppRoute.topuppaymentPage),
       ),

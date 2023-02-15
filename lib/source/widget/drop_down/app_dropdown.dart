@@ -101,6 +101,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
               borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
               borderRadius: BorderRadius.circular(8),
             ),
+            suffixIconColor: theme.primaryColor,
             border: OutlineInputBorder(
               borderSide: BorderSide(color: ThemeAppColors.primaryBlue),
               borderRadius: BorderRadius.circular(8),
@@ -110,7 +111,8 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1.0, color: ThemeAppColors.grey),
+              borderSide:
+                  BorderSide(width: 1.0, color: ThemeAppColors.primaryBlue),
               borderRadius: BorderRadius.circular(8.0),
             ),
             focusColor: ThemeAppColors.primaryBlue,

@@ -3,7 +3,11 @@ import 'package:wall_e/source/beneficiary/beneficiary_navigation_page.dart';
 import 'package:wall_e/source/beneficiary/pages/beneficiary_screen.dart';
 import 'package:wall_e/source/beneficiary/pages/beneficiary_details_page.dart';
 import 'package:wall_e/source/bottomnvaigationbar/bottomnavigationbar.dart';
+import 'package:wall_e/source/forgot_password/pages/otp_verification_page.dart';
+import 'package:wall_e/source/forgot_password/pages/password_change_success_page.dart';
+import 'package:wall_e/source/forgot_password/pages/reset_password_page.dart';
 import 'package:wall_e/source/history/pages/historyscreen.dart';
+import 'package:wall_e/source/history/pages/all_transaction_list_page.dart';
 import 'package:wall_e/source/home/features/topup/topup_page.dart';
 import 'package:wall_e/source/home/features/topup/topup_payment_page.dart';
 import 'package:wall_e/source/home/features/topup/transaction_success_page.dart';
@@ -12,9 +16,9 @@ import 'package:wall_e/source/onboard_screen/onboard_screen.dart';
 import 'package:wall_e/source/register/register_navigation_page.dart';
 import 'package:wall_e/source/sendMoney/pages/sendmoney_screen.dart';
 import 'package:wall_e/source/sendMoney/sendmoney_navigation_page.dart';
+import 'package:wall_e/source/setting/change_password/change_password_page.dart';
 import 'package:wall_e/source/setting/pages/settingscreen.dart';
 import 'package:wall_e/source/splash_screen/splash_screen.dart';
-import 'package:wall_e/source/widget/forgot_password/forgot_password_widget.dart';
 
 import 'app_route.dart';
 
@@ -35,7 +39,14 @@ class AppRouter {
         return MaterialPageRoute(builder: ((_) => RegisterNavigationPage()));
 
       case AppRoute.forgotPassword:
-        return MaterialPageRoute(builder: ((_) => const ForgotPassword()));
+        return MaterialPageRoute(builder: ((_) => const ResetPasswordPage()));
+
+      case AppRoute.resetPasswordSuccess:
+        return MaterialPageRoute(
+            builder: ((_) => const PasswordChangeSuccess()));
+
+      case AppRoute.verifyOtpRoute:
+        return MaterialPageRoute(builder: ((_) => const VerifyOtpPage()));
 
       case AppRoute.homeScreen:
         return MaterialPageRoute(
@@ -58,32 +69,36 @@ class AppRouter {
 
       case AppRoute.tranSuccessPage:
         return MaterialPageRoute(
-            builder: ((_) => const TransactionSuccessPage()));
+            builder: (_) => const TransactionSuccessPage());
 
       case AppRoute.topUpPage:
-        return MaterialPageRoute(builder: ((_) => const TopUpPage()));
+        return MaterialPageRoute(builder: (_) => const TopUpPage());
 
       case AppRoute.beneficiaryDetails:
         return MaterialPageRoute(
-            builder: ((_) => const BeneficiaryDetailsPage()));
+            builder: (_) => const BeneficiaryDetailsPage());
 
       case AppRoute.beneficiaryNavigationRoute:
-        return MaterialPageRoute(builder: ((_) => BeneficiaryNavigationPage()));
+        return MaterialPageRoute(builder: (_) => BeneficiaryNavigationPage());
 
       case AppRoute.sendmoneyNavigationRoute:
-        return MaterialPageRoute(builder: ((_) => SendMoneyNavigationPage()));
+        return MaterialPageRoute(builder: (_) => SendMoneyNavigationPage());
 
       // case AppRoute.kycNavigationRoute:
       //   return MaterialPageRoute(builder: ((_) => KycNavigationPage()));
 
       case AppRoute.topuppaymentPage:
-        return MaterialPageRoute(builder: ((_) => const TopupPaymentPage()));
+        return MaterialPageRoute(builder: (_) => const TopupPaymentPage());
 
-      // case AppRoute.changePasswordRoute:
-      //   return MaterialPageRoute(builder: ((_) => const ChangePasswordPage()));
+      case AppRoute.allTranscationListRoute:
+        return MaterialPageRoute(
+            builder: (_) => const AllTransactionListPage());
+
+      case AppRoute.changePasswordRoute:
+        return MaterialPageRoute(builder: ((_) => const ChangePasswordPage()));
 
       default:
-        return MaterialPageRoute(builder: ((_) => const Placeholder()));
+        return MaterialPageRoute(builder: (_) => const Placeholder());
     }
   }
 }

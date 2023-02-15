@@ -25,6 +25,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: MyAppBar(
         title: 'Send Money',
+        leadingIcon: true,
         onPressed: () => Navigator.pop(context),
       ),
       body: SafeArea(

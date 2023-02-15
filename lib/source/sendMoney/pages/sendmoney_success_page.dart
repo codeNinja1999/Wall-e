@@ -1,5 +1,7 @@
-import 'package:wall_e/core/color/theme_color.dart';
+import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:flutter/material.dart';
+import 'package:wall_e/source/resources/image_extension.dart';
+import 'package:wall_e/source/widget/appbar/appbar.dart';
 
 class SendmoneySuccessPage extends StatefulWidget {
   final VoidCallback backButtonAction;
@@ -15,40 +17,46 @@ class _SendmoneySuccessPageState extends State<SendmoneySuccessPage> {
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Center(
+      appBar: MyAppBar(
+        title: 'Transaction Success',
+        leadingIcon: true,
+        onPressed: () => Navigator.pop(context),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSize.viewMargin),
           child: Container(
             height: 500,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSize.inset,
+            ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(AppSize.viewMargin),
                 color: theme.primaryColorLight),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Transaction Success',
                   style: theme.textTheme.titleLarge,
                 ),
-                const SizedBox(height: 20),
-                Icon(
-                  Icons.download_done,
-                  size: 200,
-                  color: Theme.of(context).primaryColor,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSize.inset),
+                  child: Image.asset(
+                    ImageExtension.transactionSuccess,
+                    height: AppSize.inset * 10,
+                    width: AppSize.inset * 10,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
                   textAlign: TextAlign.center,
                   'Yeay congrats! your transaction has been completed Rs. 350.00 has been sent to the recipient',
-                  style: TextStyle(color: ThemeAppColors.silver),
+                  style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
-                    widget.backButtonAction();
-                  },
+                  onPressed: () => widget.backButtonAction(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColorLight,
                     shape: RoundedRectangleBorder(

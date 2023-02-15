@@ -223,9 +223,7 @@ class TransferScanTopUpRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ButtonWidget(
-            onTap: () {
-              Navigator.pushNamed(context, AppRoute.sendmoneyScreen);
-            },
+            onTap: () => Navigator.pushNamed(context, AppRoute.sendmoneyScreen),
             icon: AppIcon.send,
             text: 'Transfer'),
         ButtonWidget(onTap: () {}, icon: AppIcon.qrScanner, text: 'Scan'),

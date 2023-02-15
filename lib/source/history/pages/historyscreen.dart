@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:wall_e/core/color/theme_color.dart';
 import 'package:wall_e/core/config/images.dart';
-import 'package:wall_e/source/history/pages/transactionlist_page.dart';
+import 'package:wall_e/core/router/app_route.dart';
+import 'package:wall_e/source/history/pages/all_transaction_list_page.dart';
+import 'package:wall_e/source/resources/image_extension.dart';
 import 'package:wall_e/source/widget/appbar/appbar.dart';
 import 'package:wall_e/source/widget/exit_app_widget/exit_app_widget.dart';
 import 'package:wall_e/source/widget/list_of_dropdown_item_widget/list_of_dropdown_item_widget.dart';
@@ -17,9 +20,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   bool selectedItem = true;
 
   final List<String> months = ListDropDown.months;
-  final List<String> expense = ListDropDown.expense;
-  final List<String> expenseRemarks = ListDropDown.expenseRemarks;
-  final List<String> expenseAmount = ListDropDown.expenseAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -27,73 +27,141 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Scaffold(
       backgroundColor: theme.backgroundColor,
       appBar: MyAppBar(
-        backgroundColor: Colors.transparent,
         title: 'History',
-        titleStyle: theme.textTheme.titleLarge,
       ),
       body: WillPopScope(
         onWillPop: () => PopApp.popApp(context),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 10),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: months.length,
-                  itemBuilder: (context, index) {
-                    return Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: ThemeAppColors.secondary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            )),
-                        child: Text(months[index]),
-                      ),
-                    );
-                  },
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: AppSize.viewMargin,
+                  left: AppSize.viewMargin,
+                  right: AppSize.viewMargin,
+                ),
+                child: SizedBox(
+                  height: 50,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: months.length,
+                    itemBuilder: (context, index) {
+                      return Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: ThemeAppColors.greyShade,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              )),
+                          child: Text(months[index]),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
               const ExpenseCard(),
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Latest Transaction',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TransactionListPage(),
-                        )),
-                    child: Text(
-                      'Details',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
-                      ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: AppSize.viewMargin,
+                    left: AppSize.viewMargin,
+                    right: AppSize.viewMargin),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Latest Transaction',
+                      style: theme.textTheme.titleMedium,
                     ),
-                  )
-                ],
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                          context, AppRoute.allTranscationListRoute),
+                      child: Text(
+                        'Details',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    )
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
               const LatestTransaction(),
-              const SizedBox(height: 20),
-              const PreviousTransaction(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class LatestTransaction extends StatelessWidget {
+  const LatestTransaction({
+    Key? key,
+  }) : super(key: key);
+
+  final List<String> expense = ListDropDown.expense;
+  final List<String> expenseRemarks = ListDropDown.expenseRemarks;
+  final List<String> expenseAmount = ListDropDown.expenseAmount;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: AppSize.inset,
+        left: AppSize.viewMargin,
+        right: AppSize.viewMargin,
+        bottom: AppSize.viewMargin,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColorLight,
+          borderRadius: BorderRadius.circular(AppSize.inset),
+        ),
+        child: ListView.separated(
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          itemCount: 5,
+          separatorBuilder: (context, index) => const Divider(),
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                radius: AppSize.inset,
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage(ImageExtension.success),
+              ),
+              title: Text(
+                expense[index],
+                style: theme.textTheme.titleMedium,
+              ),
+              subtitle: Text(
+                expenseRemarks[index],
+                style: theme.textTheme.bodySmall,
+              ),
+              trailing: SizedBox(
+                height: 50,
+                child: Column(
+                  children: [
+                    Text(
+                      expenseAmount[index],
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                    Text(
+                      '${DateTime.now().hour}:${DateTime.now().minute} '
+                      'PM',
+                      style: theme.textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -108,11 +176,15 @@ class ExpenseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(
+        top: AppSize.viewMargin,
+        left: AppSize.spacedViewSpacing,
+        right: AppSize.spacedViewSpacing,
+      ),
       child: Container(
         height: 120,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppSize.viewMargin),
           color: Colors.red[300],
         ),
         child: Row(
@@ -147,154 +219,6 @@ class ExpenseCard extends StatelessWidget {
             ]),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PreviousTransaction extends StatelessWidget {
-  const PreviousTransaction({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      height: 250,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: theme.primaryColorLight,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Friday, August 20',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 160,
-            child: ListView.separated(
-              itemCount: 3,
-              separatorBuilder: (context, index) => const Divider(),
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: theme.disabledColor,
-                      backgroundImage: AssetImage(Images.usericon)),
-                  title: Text(
-                    expense[index],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  subtitle: Text(
-                    expenseRemarks[index],
-                    style: TextStyle(
-                        fontSize: 12, color: ThemeAppColors.secondary),
-                  ),
-                  trailing: SizedBox(
-                    height: 50,
-                    child: Column(
-                      children: [
-                        Text(
-                          expenseAmount[index],
-                          style: TextStyle(
-                            color: ThemeAppColors.red,
-                          ),
-                        ),
-                        Text(
-                          '${DateTime.now().hour}:${DateTime.now().minute} ' +
-                              'PM',
-                          style: TextStyle(color: ThemeAppColors.secondary),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class LatestTransaction extends StatelessWidget {
-  const LatestTransaction({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 250,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColorLight,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Today, August 29',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 160,
-            child: ListView.separated(
-              itemCount: 2,
-              separatorBuilder: (context, index) => const Divider(),
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Theme.of(context).disabledColor,
-                    backgroundImage: AssetImage(Images.usericon),
-                  ),
-                  title: Text(
-                    expense[index],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  subtitle: Text(
-                    expenseRemarks[index],
-                    style: TextStyle(
-                        fontSize: 12, color: ThemeAppColors.secondary),
-                  ),
-                  trailing: SizedBox(
-                    height: 50,
-                    child: Column(
-                      children: [
-                        Text(
-                          expenseAmount[index],
-                          style: TextStyle(
-                            color: ThemeAppColors.red,
-                          ),
-                        ),
-                        Text(
-                          '${DateTime.now().hour}:${DateTime.now().minute} '
-                          'PM',
-                          style: TextStyle(color: ThemeAppColors.secondary),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
       ),
     );
   }

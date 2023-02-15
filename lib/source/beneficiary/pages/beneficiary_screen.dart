@@ -14,19 +14,15 @@ class BeneficiaryScreen extends StatefulWidget {
 }
 
 class _BeneficiaryScreenState extends State<BeneficiaryScreen> {
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () => PopApp.popApp(context),
-      
       child: Scaffold(
         backgroundColor: theme.backgroundColor,
         appBar: MyAppBar(
-          backgroundColor: Colors.transparent,
-          title: 'Recipients',
-          titleStyle: theme.textTheme.titleLarge,
+          title: 'Recepient',
         ),
         body: Padding(
           padding: const EdgeInsets.all(24),

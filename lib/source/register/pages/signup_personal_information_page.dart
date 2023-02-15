@@ -158,10 +158,12 @@ class _RegisterPersonalDetailPageBodyState
                 },
                 child: CustomTextField(
                   enabled: false,
-                  // hintText: 'Date of Birth',
                   labelText: 'Date of Birth',
                   labelStyle: Theme.of(context).textTheme.labelLarge,
-                  suffixIcon: const Icon(Icons.calendar_today),
+                  suffixIcon: Icon(
+                    Icons.calendar_today,
+                    color: theme.primaryColor,
+                  ),
                   textController: _dateController,
                   validator: (value) {
                     if (value == "") {

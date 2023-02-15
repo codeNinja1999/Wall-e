@@ -30,6 +30,7 @@ class _SendmoneyContactInformationPageState
 
     return Scaffold(
       appBar: MyAppBar(
+        leadingIcon: true,
         title: 'Contact Information',
         onPressed: () => widget.backButtonAction(),
       ),

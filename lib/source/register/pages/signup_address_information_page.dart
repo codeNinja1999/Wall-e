@@ -59,7 +59,6 @@ class __RegisterAddressInformationPageBodyState
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return Form(
       key: formKey,

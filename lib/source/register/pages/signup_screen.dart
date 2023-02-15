@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/core/config/images.dart';
 import 'package:wall_e/core/icons/app_icons.dart';
-import 'package:wall_e/source/register/route/register_route.dart';
 import 'package:wall_e/core/app_size/app_size.dart';
 import 'package:wall_e/core/utils/keyboard.dart';
+import 'package:wall_e/source/register/route/register_route.dart';
+import 'package:wall_e/source/resources/image_extension.dart';
 import 'package:wall_e/source/widget/custom_elevated_button.dart';
 import 'package:wall_e/source/widget/step_header/esstepper_header.dart';
 import 'package:wall_e/source/widget/textfield/custom_textformfield_widget.dart';
@@ -97,25 +97,40 @@ class _CustomLogInState extends State<CustomLogIn> {
     return Padding(
       padding: const EdgeInsets.only(
         left: AppSize.viewSpacing,
-        top: AppSize.cornerRadiusSmall,
         right: AppSize.viewSpacing,
-        bottom: AppSize.cornerRadiusSmall,
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "Already have account?",
             style: theme.textTheme.bodySmall,
           ),
-          InkWell(
-            onTap: () => widget.onLogin(),
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSize.cornerRadiusSmall,
+              ),
+            ),
+            onPressed: () => widget.onLogin(),
             child: Text(
               'Log in',
-              style: theme.textTheme.titleMedium
-                  ?.copyWith(color: theme.primaryColor),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.primaryColor,
+              ),
             ),
           ),
+          // InkWell(
+          //   onTap: () => widget.onLogin(),
+          //   child: Text(
+          //     'Log in',
+          //     style: theme.textTheme.titleMedium
+          //         ?.copyWith(color: theme.primaryColor),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -128,8 +143,11 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(AppSize.viewSpacing,
-          AppSize.cornerRadiusMedium, AppSize.viewSpacing, 0),
+      padding: const EdgeInsets.only(
+        left: AppSize.viewSpacing,
+        top: AppSize.cornerRadiusMedium,
+        right: AppSize.viewSpacing,
+      ),
       child: ElevatedButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -153,7 +171,7 @@ class GoogleSignInButton extends StatelessWidget {
               backgroundColor: Colors.transparent,
               radius: 15,
               child: Image.asset(
-                Images.googleIcon,
+                ImageExtension.googleIcon,
               ),
             ),
             const SizedBox(width: 20),
@@ -278,12 +296,6 @@ class _SignUpFormState extends State<SignUpForm> {
             hintText: 'Enter your password',
             textInputAction: TextInputAction.done,
             isObscure: true,
-            // validator: (val) {
-            //   return CheckValidation.validateConfirmPassword(
-            //     confirmPasswordController.text.trim(),
-            //     passwordController.text.trim(),
-            //   );
-            // },
           ),
           const SizedBox(height: 50),
 
@@ -291,7 +303,6 @@ class _SignUpFormState extends State<SignUpForm> {
             buttonText: 'Create Account',
             onPressed: () {
               KeyboardUtil.hideKeyboard(context);
-              // if (_signupFormKey.currentState!.validate()) {}
               Navigator.pushNamed(context, RegisterRoute.otpVerification);
             },
           ),

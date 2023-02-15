@@ -157,12 +157,11 @@ class _ContactInformationBodyState extends State<ContactInformationBody> {
                   const SizedBox(width: AppSize.inset * 0.5),
                   Expanded(
                     child: CustomTextButton(
-                      // textColor: theme.bottomAppBarColor,
+                    
                       buttonType: ButtonType.round,
-                      onPressed: () {
+                      onPressed: () =>
                         Navigator.pushNamed(
-                            context, BeneficiaryRoute.payoutInfoPage);
-                      },
+                            context, BeneficiaryRoute.payoutInfoPage),
                       title: Localize.nextButtonTitle.value,
                     ),
                   )

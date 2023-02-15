@@ -18,12 +18,13 @@ class AppRoute {
   static const forgotPassword = "/forgot_password_route";
 
   static const beneficiaryDetails = "/beneficiary_details";
+  static const changePasswordRoute = "/change_password_route";
+  static const resetPasswordSuccess = "/reset_password_success";
+  static const verifyOtpRoute = "/verify_otp_route";
 
   static const beneficiaryNavigationRoute = "/benficiary_navigation_route";
   static const sendmoneyNavigationRoute = "/sendmoney_navigation_route";
   static const kycNavigationRoute = "/kyc_navigation_route";
 
-  static const transactionHistoryDetails = "/transaction_history_details_route";
-
-  static const changePasswordRoute = "/change_password_route";
+  static const allTranscationListRoute = "/all_transaction_route";
 }

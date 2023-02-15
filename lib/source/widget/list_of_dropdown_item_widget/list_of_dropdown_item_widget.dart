@@ -213,23 +213,19 @@ class ListDropDown {
   ];
   static const List<DropdownMenuItem> paymentMethod = [
     DropdownMenuItem(
-      child: Text("Esewa"),
       value: 'Esewa',
+      child: Text("Esewa"),
     ),
 
     DropdownMenuItem(
-      child: Text("Paypal"),
       value: 'Paypal',
+      child: Text("Paypal"),
     ),
 
     DropdownMenuItem(
-      child: Text("Visa Card"),
       value: 'Visa Card',
+      child: Text("Visa Card"),
     ),
-    // 'E-sewa',
-    // 'Paypal',
-    // 'Credit card',
-    // 'Debit card',
-    // 'Visa card',
+    
   ];
 }

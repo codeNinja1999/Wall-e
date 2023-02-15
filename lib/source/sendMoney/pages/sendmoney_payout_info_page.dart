@@ -27,6 +27,7 @@ class _SendmoneyPayoutInfoPageState extends State<SendmoneyPayoutInfoPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: MyAppBar(
+        leadingIcon: true,
         title: 'Payout Detail',
         onPressed: () => Navigator.pop(context),
       ),
@@ -103,7 +104,6 @@ class _SendmoneyPayoutInfoPageState extends State<SendmoneyPayoutInfoPage> {
                   labelText: 'Account number*',
                   labelStyle: theme.textTheme.labelLarge,
                   keyboardType: TextInputType.number,
-                
                 ),
               ),
               Padding(
