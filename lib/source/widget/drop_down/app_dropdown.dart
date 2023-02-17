@@ -71,7 +71,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
               filled: true,
               hintText: "Search",
               prefixIcon: Icon(Icons.search, color: ThemeAppColors.grey),
-              hintStyle: theme.textTheme.labelLarge,
+              hintStyle: theme.textTheme.bodyMedium,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(AppSize.cornerRadiusMedium),
@@ -131,16 +131,19 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
 
 Widget loadingView(BuildContext context, String? loading) {
   return Center(
-      child: SizedBox(
-          height: 18,
-          width: 18,
-          child: CircularProgressIndicator(color: ThemeAppColors.primaryBlue)));
+    child: SizedBox(
+      height: 18,
+      width: 18,
+      child: CircularProgressIndicator(color: ThemeAppColors.primaryBlue),
+    ),
+  );
 }
 
 Widget emptyView(BuildContext context, String? error) {
   return Center(
-      child: Text("No Data Found",
-          style: Theme.of(context).textTheme.titleMedium));
+    child:
+        Text("No Data Found", style: Theme.of(context).textTheme.titleMedium),
+  );
 }
 
 class DropDownItem {

@@ -8,7 +8,6 @@ class ButtonWidget extends StatelessWidget {
     required this.text,
     required this.onTap,
   }) : super(key: key);
-
   final IconData? icon;
   final String text;
   final Function()? onTap;
@@ -37,8 +36,13 @@ class ButtonWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        //text
-        Text(text, style: TextStyle(color: ThemeAppColors.light)),
+        Text(
+          text,
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge
+              ?.copyWith(color: ThemeAppColors.light),
+        ),
       ],
     );
   }

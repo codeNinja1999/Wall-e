@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/color/theme_color.dart';
-import 'package:wall_e/source/home/pages/bill_payment.dart';
+import 'package:wall_e/source/ui/home/pages/bill_payment.dart';
 
 class SmallButtonWidget extends StatelessWidget {
   const SmallButtonWidget({
@@ -58,6 +56,7 @@ class SmallButtonWidget extends StatelessWidget {
         //text
         Text(
           text,
+          style: theme.textTheme.bodySmall,
         ),
       ],
     );

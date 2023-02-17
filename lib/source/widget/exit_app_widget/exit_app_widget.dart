@@ -15,11 +15,12 @@ class PopApp {
             children: [
               Text(
                 'Wall-e',
-                style: theme.textTheme.titleMedium,
+                style: theme.textTheme.bodyLarge,
               ),
               const SizedBox(height: 20),
-              const Text(
+              Text(
                 'Are you sure you want to exit?',
+                style: theme.textTheme.bodyMedium,
               ),
               const SizedBox(height: 20),
               Row(

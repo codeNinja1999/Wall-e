@@ -8,7 +8,6 @@ extension LocalizeExtenstion on Localize {
       case Localize.appName:
         return "app_name";
 
-      
       case Localize.sourceoffund:
         return "Source of Fund";
 
@@ -31,7 +30,7 @@ extension LocalizeExtenstion on Localize {
       case Localize.forward:
         return "continue";
 
-        case Localize.selectBank:
+      case Localize.selectBank:
         return "Select Bank";
       case Localize.payoutType:
         return "payout_type";
@@ -482,25 +481,25 @@ extension LocalizeExtenstion on Localize {
         return "log_out";
 
       case Localize.versin:
-        return "versin";
+        return "Versin";
 
       case Localize.profile:
         return "profile";
 
       case Localize.nationality:
-        return "nationality";
+        return "Nationality";
 
       case Localize.gender:
-        return "gender";
+        return "Gender";
 
       case Localize.dateOfBirth:
-        return "date_of_birth";
+        return "Date of Birth";
 
       case Localize.address:
-        return "address";
+        return "Address";
 
       case Localize.mobileNumber:
-        return "mobile_number";
+        return "Mobile Number";
 
       case Localize.mobileNumberPlaceHolder:
         return "mobile_number_placeHolder";
@@ -515,7 +514,7 @@ extension LocalizeExtenstion on Localize {
         return "id_expiry_date";
 
       case Localize.currentPin:
-        return "current_pin";
+        return "Current pin";
 
       case Localize.oldPin:
         return "old_pin";
@@ -545,16 +544,16 @@ extension LocalizeExtenstion on Localize {
         return "address_error_message";
 
       case Localize.relationship:
-        return "relationship";
+        return "Relationship";
 
       case Localize.relationshipLabel:
-        return "relationship_label";
+        return "Relationship label";
 
       case Localize.relationshipErrorMessage:
         return "relationship_error_message";
 
       case Localize.imageUpload:
-        return "image_upload";
+        return "Image upload";
 
       case Localize.payoutMethod:
         return "payout_method";
@@ -584,7 +583,7 @@ extension LocalizeExtenstion on Localize {
         return "branch_error_message";
 
       case Localize.accountNumber:
-        return "account_number";
+        return "Account number";
 
       case Localize.accountNumberLabel:
         return "account_number_label";
@@ -593,7 +592,7 @@ extension LocalizeExtenstion on Localize {
         return "account_number_error_message";
 
       case Localize.wallet:
-        return "wallet";
+        return "Wallet";
 
       case Localize.walletErrorMessage:
         return "wallet_error_message";
@@ -605,28 +604,28 @@ extension LocalizeExtenstion on Localize {
         return "wallet_id_error_message";
 
       case Localize.district:
-        return "district";
+        return "District";
 
       case Localize.districtErrorMessage:
         return "district_error_message";
 
       case Localize.area:
-        return "area";
+        return "Area";
 
       case Localize.areaErrorMessage:
         return "district_error_message";
 
       case Localize.receiverDetails:
-        return "receiver_details";
+        return "Receiver Details";
 
       case Localize.payoutInformation:
-        return "payout_information";
+        return "Payout Information";
 
       case Localize.personalInformation:
-        return "personal_information";
+        return "Personal Information";
 
       case Localize.contactInformation:
-        return "contact_information";
+        return "Contact Information";
 
       case Localize.searchReceivers:
         return "search_receivers";
@@ -653,10 +652,10 @@ extension LocalizeExtenstion on Localize {
         return "wallet_id_label";
 
       case Localize.exchangeRate:
-        return "exchange_rate";
+        return "Exchange rate";
 
       case Localize.purpose:
-        return "purpose";
+        return "Purpose";
 
       case Localize.serviceCharge:
         return "service_charge";
@@ -671,7 +670,7 @@ extension LocalizeExtenstion on Localize {
         return "purpose_remit";
 
       case Localize.discount:
-        return "discount";
+        return "Discount";
 
       case Localize.promotionRate:
         return "promotion_rate";

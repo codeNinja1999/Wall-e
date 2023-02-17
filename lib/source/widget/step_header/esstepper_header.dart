@@ -20,7 +20,7 @@ class EsStepperHeader extends StatelessWidget {
     const double estimatedHeight = 36 + 12 + 20;
 
     return Container(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
+      padding: const EdgeInsets.only(top: 16, bottom: 16),
       color: Theme.of(context).backgroundColor,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

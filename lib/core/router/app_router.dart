@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:wall_e/source/beneficiary/beneficiary_navigation_page.dart';
-import 'package:wall_e/source/beneficiary/pages/beneficiary_screen.dart';
-import 'package:wall_e/source/beneficiary/pages/beneficiary_details_page.dart';
-import 'package:wall_e/source/bottomnvaigationbar/bottomnavigationbar.dart';
-import 'package:wall_e/source/forgot_password/pages/otp_verification_page.dart';
-import 'package:wall_e/source/forgot_password/pages/password_change_success_page.dart';
-import 'package:wall_e/source/forgot_password/pages/reset_password_page.dart';
-import 'package:wall_e/source/history/pages/historyscreen.dart';
-import 'package:wall_e/source/history/pages/all_transaction_list_page.dart';
-import 'package:wall_e/source/home/features/topup/topup_page.dart';
-import 'package:wall_e/source/home/features/topup/topup_payment_page.dart';
-import 'package:wall_e/source/home/features/topup/transaction_success_page.dart';
-import 'package:wall_e/source/login/login_screen.dart';
-import 'package:wall_e/source/onboard_screen/onboard_screen.dart';
-import 'package:wall_e/source/register/register_navigation_page.dart';
-import 'package:wall_e/source/sendMoney/pages/sendmoney_screen.dart';
-import 'package:wall_e/source/sendMoney/sendmoney_navigation_page.dart';
-import 'package:wall_e/source/setting/change_password/change_password_page.dart';
-import 'package:wall_e/source/setting/pages/settingscreen.dart';
-import 'package:wall_e/source/splash_screen/splash_screen.dart';
-
+import 'package:wall_e/source/ui/beneficiary/beneficiary_navigation_page.dart';
+import 'package:wall_e/source/ui/beneficiary/pages/beneficiary_screen.dart';
+import 'package:wall_e/source/ui/beneficiary/pages/beneficiary_details_page.dart';
+import 'package:wall_e/source/ui/bottomnvaigationbar/bottomnavigationbar.dart';
+import 'package:wall_e/source/ui/forgot_password/pages/otp_verification_page.dart';
+import 'package:wall_e/source/ui/forgot_password/pages/password_change_success_page.dart';
+import 'package:wall_e/source/ui/forgot_password/pages/reset_password_page.dart';
+import 'package:wall_e/source/ui/history/pages/historyscreen.dart';
+import 'package:wall_e/source/ui/history/pages/all_transaction_list_page.dart';
+import 'package:wall_e/source/ui/home/features/topup/topup_page.dart';
+import 'package:wall_e/source/ui/home/features/topup/topup_payment_page.dart';
+import 'package:wall_e/source/ui/home/features/topup/transaction_success_page.dart';
+import 'package:wall_e/source/ui/login/login_screen.dart';
+import 'package:wall_e/source/ui/onboard_screen/onboard_screen.dart';
+import 'package:wall_e/source/ui/register/register_navigation_page.dart';
+import 'package:wall_e/source/ui/sendMoney/pages/sendmoney_screen.dart';
+import 'package:wall_e/source/ui/sendMoney/sendmoney_navigation_page.dart';
+import 'package:wall_e/source/ui/setting/change_password/change_password_page.dart';
+import 'package:wall_e/source/ui/setting/pages/settingscreen.dart';
+import 'package:wall_e/source/ui/splash_screen/splash_screen.dart';
 import 'app_route.dart';
 
 class AppRouter {

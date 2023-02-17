@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wall_e/core/router/app_router.dart';
-
 import 'package:provider/provider.dart';
 import 'package:wall_e/core/theme/theme_config.dart';
 import 'package:wall_e/core/theme/theme_data.dart';
-import 'package:wall_e/source/splash_screen/splash_screen.dart';
+import 'package:wall_e/source/ui/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
